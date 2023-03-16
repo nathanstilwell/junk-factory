@@ -1,0 +1,16 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DEFAULT_CLUSTER_URL")
+}
+
+model junk {
+  id    Int     @id @default(sequence(start: 1, increment: 1))
+  foo  String
+  bar String
+  baz String
+  bim String
+}

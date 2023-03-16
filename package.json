@@ -1,0 +1,21 @@
+{
+  "name": "drill-cluster",
+  "version": "1.0.0",
+  "description": "something to exercise Cockroach Clusters",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nathan Stilwell",
+  "license": "WTFPL",
+  "dependencies": {
+    "@prisma/client": "^4.11.0",
+    "big-number": "^2.0.0",
+    "minimist": "^1.2.8",
+    "ora": "^6.1.2"
+  },
+  "devDependencies": {
+    "prisma": "^4.11.0"
+  }
+}
