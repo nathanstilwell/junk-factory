@@ -18,8 +18,8 @@ const defaultNumberOfRows = 100;
 consoleStamp(console, 'dmmmyyyy HH:MM:ss.l');
 
 const clusters = conn.clusters.map((cluster) => ({
-  name: cluster.name,
   client: new PrismaClient({ datasources: { db: { url: cluster.connString }}}),
+  ...cluster,
 }))
 
 
@@ -88,6 +88,10 @@ async function main() {
   });
 
   await Promise.all(clusters.map(async (cluster) => {
+    if (cluster.disabled) {
+      console.log(`skipping disabled cluster [${cluster.name}]`);
+      return;
+    }
     await insertJunk(cluster, junk);
   }));
 }
