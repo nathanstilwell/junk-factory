@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client";
 import BigNumber from "big-number";
 import minimist from "minimist";
 import ora from "ora";
+import consoleStamp from "console-stamp";
 
 // https://www.stefanjudis.com/snippets/how-to-import-json-files-in-es-modules-node-js/
 // import conn from "./env.json" assert { type: "json" };
@@ -13,6 +14,8 @@ const conn = require("./env.json");
 
 const argv = minimist(process.argv.slice(2));
 const defaultNumberOfRows = 100;
+
+consoleStamp(console, 'dmmmyyyy HH:MM:ss.l');
 
 const clusters = conn.clusters.map((cluster) => ({
   name: cluster.name,
