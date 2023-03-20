@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/bin/env node
 
 import { PrismaClient } from "@prisma/client";
 import BigNumber from "big-number";
