@@ -1,5 +1,5 @@
 {
-  "name": "drill-cluster",
+  "name": "junk-factory",
   "version": "1.0.0",
   "description": "something to exercise Cockroach Clusters",
   "main": "index.js",
@@ -7,6 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": "./index.js",
   "author": "Nathan Stilwell",
   "license": "WTFPL",
   "dependencies": {
