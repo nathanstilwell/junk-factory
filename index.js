@@ -50,7 +50,7 @@ const insertJunk = async (cluster, junk) => {
   o.start();
 
   try {
-    console.info(`inserting rows into ${cluster.name}`);
+    console.info(`inserting ${junk.length} rows into ${cluster.name}`);
     const inserted = await cluster.client.junk.createMany({
       data: junk,
     });
@@ -68,9 +68,7 @@ const insertJunk = async (cluster, junk) => {
 
 };
 
-async function main() {
-  const rows = argv.rows || defaultNumberOfRows;
-
+const generateRows = async(rows) => {
   console.info(`Generating ${rows} rows of junk`);
   const o = ora({
     text: `Generating ${rows} rows of junk`,
@@ -87,11 +85,19 @@ async function main() {
     symbol: "✅"
   });
 
+  return junk;
+}
+
+async function main() {
+  const argRows = argv.rows || defaultNumberOfRows;
+
   await Promise.all(clusters.map(async (cluster) => {
     if (cluster.disabled) {
       console.log(`skipping disabled cluster [${cluster.name}]`);
       return;
     }
+    const rows = cluster.rows || argRows;
+    const junk = await generateRows(rows);
     await insertJunk(cluster, junk);
   }));
 }
